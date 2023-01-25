@@ -1,0 +1,5 @@
+::powershell.exe .\APITestingForm.ps1
+
+powershell.exe -ExecutionPolicy Bypass -Command "& {.\APITestingForm.ps1}"
+
+pause
