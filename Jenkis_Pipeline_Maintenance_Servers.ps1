@@ -7,28 +7,28 @@ $BuildUser = $BuildUser.Substring(0, $BuildUser.IndexOf("("))
 
 Switch ($AppEnvironment + "_" + $AppServerNode)
 {
-    "PROD_LessorPortal-Node1"   {$AppServerFQDN = "G2422USPWHEW04V.LOGON.DS.GE.COM"; $AppIISName = 'LessorPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
-    "PROD_LessorPortal-Node2"   {$AppServerFQDN = "G2422USPWHEW05V.LOGON.DS.GE.COM"; $AppIISName = 'LessorPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
-    "DR_LessorPortal-Node1"   	{$AppServerFQDN = "G2422USRWHEW04V.LOGON.DS.GE.COM"; $AppIISName = 'LessorPortal.DR'; $AppPrcName = 'PricingService.DR'  }
-    "DR_LessorPortal-Node2"   	{$AppServerFQDN = "G2422USRWHEW05V.LOGON.DS.GE.COM"; $AppIISName = 'LessorPortal.DR'; $AppPrcName = 'PricingService.DR'  }
-    "PROD_LessorPortal-Both"    {$AppServerFQDN = "G2422USPWHEW04V.LOGON.DS.GE.COM", "G2422USPWHEW05V.LOGON.DS.GE.COM"; $AppIISName = 'LessorPortal.PROD'; $AppPrcName = 'PricingService.PROD' }
-    "DR_LessorPortal-Both"    	{$AppServerFQDN = "G2422USRWHEW04V.LOGON.DS.GE.COM", "G2422USRWHEW05V.LOGON.DS.GE.COM"; $AppIISName = 'LessorPortal.DR'; $AppPrcName = 'PricingService.DR' }
-    "PROD_CustomerPortal-Node1" {$AppServerFQDN = "G2422USPWHEW06V.LOGON.DS.GE.COM"; $AppIISName = 'CustomerPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
-    "PROD_CustomerPortal-Node2" {$AppServerFQDN = "G2422USPWHEW07V.LOGON.DS.GE.COM"; $AppIISName = 'CustomerPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
-    "DR_CustomerPortal-Node1" 	{$AppServerFQDN = "G2422USRWHEW06V.LOGON.DS.GE.COM"; $AppIISName = 'CustomerPortal.DR'; $AppPrcName = 'PricingService.DR'  }
-    "DR_CustomerPortal-Node2" 	{$AppServerFQDN = "G2422USRWHEW07V.LOGON.DS.GE.COM"; $AppIISName = 'CustomerPortal.DR'; $AppPrcName = 'PricingService.DR'  }
-    "PROD_CustomerPortal-Both"  {$AppServerFQDN = "G2422USPWHEW06V.LOGON.DS.GE.COM", "G2422USPWHEW07V.LOGON.DS.GE.COM"; $AppIISName = 'CustomerPortal.PROD'; $AppPrcName = 'PricingService.PROD' }
-    "DR_CustomerPortal-Both"  	{$AppServerFQDN = "G2422USRWHEW06V.LOGON.DS.GE.COM", "G2422USRWHEW07V.LOGON.DS.GE.COM"; $AppIISName = 'CustomerPortal.DR'; $AppPrcName = 'PricingService.DR' }
+    "PROD_LessorPortal-Node1"   {$AppServerFQDN = "Server.Company.com"; $AppIISName = 'LessorPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
+    "PROD_LessorPortal-Node2"   {$AppServerFQDN = "Server.Company.com"; $AppIISName = 'LessorPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
+    "DR_LessorPortal-Node1"   	{$AppServerFQDN = "Server.Company.com"; $AppIISName = 'LessorPortal.DR'; $AppPrcName = 'PricingService.DR'  }
+    "DR_LessorPortal-Node2"   	{$AppServerFQDN = "Server.Company.com"; $AppIISName = 'LessorPortal.DR'; $AppPrcName = 'PricingService.DR'  }
+    "PROD_LessorPortal-Both"    {$AppServerFQDN = "Server.Company.com", "G2422USPWHEW05V.LOGON.DS.company.com"; $AppIISName = 'LessorPortal.PROD'; $AppPrcName = 'PricingService.PROD' }
+    "DR_LessorPortal-Both"    	{$AppServerFQDN = "Server.Company.com", "G2422USRWHEW05V.LOGON.DS.company.com"; $AppIISName = 'LessorPortal.DR'; $AppPrcName = 'PricingService.DR' }
+    "PROD_CustomerPortal-Node1" {$AppServerFQDN = "Server.Company.com"; $AppIISName = 'CustomerPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
+    "PROD_CustomerPortal-Node2" {$AppServerFQDN = "Server.Company.com"; $AppIISName = 'CustomerPortal.PROD'; $AppPrcName = 'PricingService.PROD'  }
+    "DR_CustomerPortal-Node1" 	{$AppServerFQDN = "Server.Company.com"; $AppIISName = 'CustomerPortal.DR'; $AppPrcName = 'PricingService.DR'  }
+    "DR_CustomerPortal-Node2" 	{$AppServerFQDN = "Server.Company.com"; $AppIISName = 'CustomerPortal.DR'; $AppPrcName = 'PricingService.DR'  }
+    "PROD_CustomerPortal-Both"  {$AppServerFQDN = "Server.Company.com", "Server.Company.com"; $AppIISName = 'CustomerPortal.PROD'; $AppPrcName = 'PricingService.PROD' }
+    "DR_CustomerPortal-Both"  	{$AppServerFQDN = "Server.Company.com", "Server.Company.com"; $AppIISName = 'CustomerPortal.DR'; $AppPrcName = 'PricingService.DR' }
     Default {Write-Host "App server doesn't exist for ($AppEnvironment ""&"" $AppServerNode) combination. Please try again!!!"
          	Exit}
 }
 
 Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
 
-    $smtpServer = "e2ksmtp01.e2k.ad.ge.com"
+    $smtpServer = "e2ksmtp01.e2k.ad.company.com"
     $SubjectDate = (Get-Date).AddDays(0).ToString('dd-MMM-yyyy hh:mm')
-    $emailFrom = "if-leasewave-maintenance@ge.com" 
-    $emailTo = @("hef.leasewave.support@ge.com")
+    $emailFrom = "if-Application-maintenance@company.com" 
+    $emailTo = @("hef.Application.support@company.com")
 
   Switch ($Using:AppOperation){
 		
@@ -38,9 +38,9 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
                $Appcmp = $using:AppComponent
                $cnt = ($Appcmp.Split(',').Count) - 1
                Do{
-                    If((($Appcmp.Split(',')[$cnt] -eq 'LW Job Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Pricing Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Shibboleth Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'TValue')) -AND ($Using:AppServerNode -Like '*CustomerPortal*'))
+                    If((($Appcmp.Split(',')[$cnt] -eq 'App Job Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Pricing Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Shibboleth Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'TValue')) -AND ($Using:AppServerNode -Like '*CustomerPortal*'))
                     {
-                        Write-Host "There is no TValue, Shibboleth and LW Job Service for CustomerPortal $Using:AppEnvironment-$env:COMPUTERNAME. Please choose the option wisely and retry!!!"
+                        Write-Host "There is no TValue, Shibboleth and App Job Service for CustomerPortal $Using:AppEnvironment-$env:COMPUTERNAME. Please choose the option wisely and retry!!!"
                         Exit
                     }
                  	Switch($Appcmp.Split(',')[$cnt])
@@ -54,8 +54,8 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
 						Get-Website "$Using:AppPrcName" | Stop-Website}  							
                         "TValue"
                         {Get-Service -Name 'TVA_Service' | Stop-Service}
-                        "LW Job Service"
-                        {Get-Service -Name 'LWJobManager_Service' | Stop-Service}
+                        "App Job Service"
+                        {Get-Service -Name 'AppJobManager_Service' | Stop-Service}
                         "Shibboleth Service"
                         {Get-Service -Name 'shibd_Default' | Stop-Service}
                         Defaut {Write-Host 'Invalid Choice.. Please try again!!!' Exit}
@@ -68,17 +68,17 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
                 #Email Sending Part
                 $ErrorActionPreference = "silentlycontinue"
                 $Hostname = ($using:AppServerFQDN).Substring(0,15)
-                $body = "<font face = calibri>Greetings,<br><br> Below is the status of LeaseWave Services:<br><ul>
+                $body = "<font face = calibri>Greetings,<br><br> Below is the status of Application Services:<br><ul>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> WebSite Status : <B>"+(Get-Website -Name $using:AppIISName).State +"</B></li>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> AppPool Status : <B>"+(Get-WebAppPoolState -Name $using:AppIISName).Value +"</B></li>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> Pricing Service Status : <B>"+(Get-Website -Name $using:AppPrcName).State +"</B></li>				
-                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> LW TVal Service Status : <B>"+(get-service -Name TVA_Service).Status +"</B></li>
-                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> LW Job Service Status : <B>"+(get-service -Name LWJobManager_Service).Status +"</B></li>
+                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> App TVal Service Status : <B>"+(get-service -Name TVA_Service).Status +"</B></li>
+                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> App Job Service Status : <B>"+(get-service -Name AppJobManager_Service).Status +"</B></li>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> Shibboleth Service Status : <B>"+(get-service -Name shibd_Default).Status +"</B></li></ul>
-                <br>Regards,<br>LeaseWave Support Team" 
+                <br>Regards,<br>Application Support Team" 
 
                 Clear-Variable -Name Hostname
-                $subject = $Using:AppEnvironment+": LeaseWave Services Stopped: "+$SubjectDate
+                $subject = $Using:AppEnvironment+": Application Services Stopped: "+$SubjectDate
                 Send-MailMessage -smtpserver $smtpserver -from $emailFrom -to $emailTo -subject $subject -body $body -bodyashtml                       
             }
         
@@ -88,9 +88,9 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
                $Appcmp = $using:AppComponent
                $cnt = ($Appcmp.Split(',').Count) - 1
                Do{
-                    If((($Appcmp.Split(',')[$cnt] -eq 'LW Job Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Pricing Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Shibboleth Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'TValue')) -AND ($Using:AppServerNode -Like '*CustomerPortal*'))
+                    If((($Appcmp.Split(',')[$cnt] -eq 'App Job Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Pricing Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Shibboleth Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'TValue')) -AND ($Using:AppServerNode -Like '*CustomerPortal*'))
                     {
-                        Write-Host "There is no TValue, Shibboleth and LW Job Service for CustomerPortal $Using:AppEnvironment-$env:COMPUTERNAME. Please choose the option wisely and retry!!!"
+                        Write-Host "There is no TValue, Shibboleth and App Job Service for CustomerPortal $Using:AppEnvironment-$env:COMPUTERNAME. Please choose the option wisely and retry!!!"
                         Exit
                     }
                  	Switch($Appcmp.Split(',')[$cnt])
@@ -104,8 +104,8 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
 						Start-WebAppPool -Name "$Using:AppPrcName"}  						
                         "TValue"
                         {Get-Service -Name 'TVA_Service' | Start-Service}
-                        "LW Job Service"
-                        {Get-Service -Name 'LWJobManager_Service' | Start-Service}
+                        "App Job Service"
+                        {Get-Service -Name 'AppJobManager_Service' | Start-Service}
                         "Shibboleth Service"
                         {Get-Service -Name 'shibd_Default' | Start-Service}
                         Defaut {Write-Host 'Invalid Choice.. Please try again!!!' Exit}
@@ -117,17 +117,17 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
                 #Email Sending Part
                 $ErrorActionPreference = "silentlycontinue"
                 $Hostname = ($using:AppServerFQDN).Substring(0,15)
-                $body = "<font face = calibri>Greetings,<br><br> Below is the status of LeaseWave Services:<br><ul>
+                $body = "<font face = calibri>Greetings,<br><br> Below is the status of Application Services:<br><ul>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> WebSite Status : <B>"+(Get-Website -Name $using:AppIISName).State +"</B></li>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> AppPool Status : <B>"+(Get-WebAppPoolState -Name $using:AppIISName).Value +"</B></li>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> Pricing Service Status : <B>"+(Get-Website -Name $using:AppPrcName).State +"</B></li>								
-                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> LW TVal Service Status : <B>"+(get-service -Name TVA_Service).Status +"</B></li>
-                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> LW Job Service Status : <B>"+(get-service -Name LWJobManager_Service).Status +"</B></li>
+                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> App TVal Service Status : <B>"+(get-service -Name TVA_Service).Status +"</B></li>
+                <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> App Job Service Status : <B>"+(get-service -Name AppJobManager_Service).Status +"</B></li>
                 <li><U>"+$using:AppEnvironment+"-"+$Hostname+ "</U> Shibboleth Service Status : <B>"+(get-service -Name shibd_Default).Status +"</B></li></ul>
-                <br>Regards,<br>LeaseWave Support Team" 
+                <br>Regards,<br>Application Support Team" 
 
                 Clear-Variable -Name Hostname
-                $subject = $Using:AppEnvironment+": LeaseWave Services Started: "+$SubjectDate
+                $subject = $Using:AppEnvironment+": Application Services Started: "+$SubjectDate
                 Send-MailMessage -smtpserver $smtpserver -from $emailFrom -to $emailTo -subject $subject -body $body -bodyashtml                                    
             }
         
@@ -137,9 +137,9 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
                $Appcmp = $using:AppComponent
                $cnt = ($Appcmp.Split(',').Count) - 1
                Do{
-                    If((($Appcmp.Split(',')[$cnt] -eq 'LW Job Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Pricing Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Shibboleth Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'TValue')) -AND ($Using:AppServerNode -Like '*CustomerPortal*'))
+                    If((($Appcmp.Split(',')[$cnt] -eq 'App Job Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Pricing Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'Shibboleth Service') -OR ($Appcmp.Split(',')[$cnt] -eq 'TValue')) -AND ($Using:AppServerNode -Like '*CustomerPortal*'))
                     {
-                        Write-Host "There is no TValue, Shibboleth and LW Job Service for CustomerPortal $Using:AppEnvironment-$env:COMPUTERNAME. Please choose the option wisely and retry."
+                        Write-Host "There is no TValue, Shibboleth and App Job Service for CustomerPortal $Using:AppEnvironment-$env:COMPUTERNAME. Please choose the option wisely and retry."
                         Exit
                     }
                  	Switch($Appcmp.Split(',')[$cnt])
@@ -151,9 +151,9 @@ Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
                         "Pricing Service"
                         {Write-Host "$Using:AppEnvironment-$env:COMPUTERNAME Pricing Service Status    : " (Get-Website -Name "$Using:AppPrcName").State}						
                         "TValue"                                           
-                        {Write-Host "$Using:AppEnvironment-$env:COMPUTERNAME LW TVal Service Status    : " (get-service -Name 'TVA_Service').Status}
-                        "LW Job Service"                                   
-                        {Write-Host "$Using:AppEnvironment-$env:COMPUTERNAME LW Job Service Status     : " (get-service -Name 'LWJobManager_Service').Status}
+                        {Write-Host "$Using:AppEnvironment-$env:COMPUTERNAME App TVal Service Status    : " (get-service -Name 'TVA_Service').Status}
+                        "App Job Service"                                   
+                        {Write-Host "$Using:AppEnvironment-$env:COMPUTERNAME App Job Service Status     : " (get-service -Name 'AppJobManager_Service').Status}
                         "Shibboleth Service"                               
                         {Write-Host "$Using:AppEnvironment-$env:COMPUTERNAME Shibboleth Service Status : " (get-service -Name 'shibd_Default').Status}
                         Defaut {Write-Host 'Invalid Choice.. Please try again!!!' Exit}
