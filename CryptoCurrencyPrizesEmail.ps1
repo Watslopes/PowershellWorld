@@ -6,4 +6,4 @@ $L_Msg = $L_Msg +'<tr align = "left"><td>' + $MyCrypto2.data.name + '</td><td> <
 
 $body = "<font face = calibri>Greetings,<br><br>Your Crypto price status today: <br><br><table border = 1 cellspacing = 0 cellpadding = 5 bordercolor = black><tr align = left bgcolor = #6495ED><th>Crypto Name</th><th>Crypto Price (USD)</th></tr>" + $L_Msg +"</table><br><br>Regards,<br>Watson Lopes"  
 $subject = "Your Crypto Status : "+(Get-Date).AddDays(0).ToString('dd-MMM-yyyy hh:mm')
-Send-MailMessage -smtpserver "e2ksmtp01.e2k.ad.ge.com" -from abc@email.com -to  abc@email.com -subject $subject -body $body -bodyashtml -Priority High
+Send-MailMessage -smtpserver "emailserver.company.com" -from abc@email.com -to  abc@email.com -subject $subject -body $body -bodyashtml -Priority High
