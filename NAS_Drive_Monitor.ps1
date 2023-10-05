@@ -3,9 +3,9 @@
 $FolderPath = "\\NASDrive"
 $inputpath = $args[0]
 $SubjectDate = (Get-Date).AddDays(0).ToString('dd-MMM-yyyy hh:mm')
-$emailFrom = "if-Application-NAS-monitor@company.com" 
-$emailTo = @("hef.Application.support@company.com")
-[string[]]$emailCc = "charles.nash@company.com","christine.bohte@company.com"
+$emailFrom = "Application-NAS-monitor@company.com" 
+$emailTo = @("Application.support@company.com")
+[string[]]$emailCc = "abc@company.com","def@company.com"
 $smtpServer = "e2ksmtp01.e2k.ad.company.com"
 $environemnt = "PROD"
 
@@ -144,8 +144,8 @@ Switch ($inputpath)
                         COUNT(DISTINCT GUID) AS Total_Receipts,
                         SUM(CASE WHEN Balance_Amount <> '0' THEN 0 ELSE 1 END) AS Receipts_with_Zero_Balance_Amount,
                         cast(cast(100.0 * SUM(CASE WHEN Balance_Amount <> '0' THEN 0 ELSE 1 END)/COUNT(DISTINCT GUID) as decimal(18,2)) as varchar(20)) + '%' As [Auto-Cash_Hit_Rate]
-                        From Receipts(nolock) 
-                        Where GUID Like 'TB%' And postdate = (select CurrentBusinessDate from businessunits(nolock)) --and CAST([createdtime] as time) > CAST('17:30' as time)
+                        From Receipts(nolock)Â 
+                        WhereÂ GUID Like 'TB%' And postdate = (select CurrentBusinessDate from businessunits(nolock))Â --and CAST([createdtime] as time) > CAST('17:30' as time)
                         GROUP BY PostDate"
 
             # This code connects to the SQL server and retrieves the data
