@@ -25,10 +25,10 @@ Switch ($AppEnvironment + "_" + $AppServerNode)
 
 Invoke-Command -ComputerName $AppServerFQDN -ScriptBlock {
 
-    $smtpServer = "e2ksmtp01.e2k.ad.company.com"
+    $smtpServer = "emailserver.company.com"
     $SubjectDate = (Get-Date).AddDays(0).ToString('dd-MMM-yyyy hh:mm')
-    $emailFrom = "if-Application-maintenance@company.com" 
-    $emailTo = @("hef.Application.support@company.com")
+    $emailFrom = "Application-maintenance@company.com" 
+    $emailTo = @("support@company.com")
 
   Switch ($Using:AppOperation){
 		
